@@ -6,7 +6,7 @@ import json
 
 
 ARXIV_DATA = "data/arxivData.json"
-top_n = 4
+TOP_N = 10
 
 
 with open(ARXIV_DATA, "rt") as f:
@@ -43,22 +43,22 @@ if __name__ == "__main__":
     print(f"{len(authors)} unique authors & {len(colabs)} unique colabs in the dataset.")
 
     
-    print(f"Top {top_n} most common authors are:")
-    for key, val in authors.most_common(top_n):
+    print(f"Top {TOP_N} most common authors are:")
+    for key, val in authors.most_common(TOP_N):
         print(f"{key}\t:\t{val} papers")
 
     
     pairs = list()
 
     for (author, peers) in colabs.items():
-        pairs_t = ((author, peer) for peer in peers)
+        pairs_t = (tuple(sorted([author, peer])) for peer in peers)
         pairs.extend(pairs_t)
 
     pairs = Counter(pairs)
 
-    print(f"Top {top_n} most common author pairs are:")
-    for key, val in pairs.most_common(top_n):
-        print(f"{key}\t:\t{val} colabs")
+    print(f"Top {TOP_N} most common author pairs are:")
+    for key, val in pairs.most_common(TOP_N):
+        print(f"{key}\t:\t{val//2} colabs")
 
 
 
