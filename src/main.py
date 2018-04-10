@@ -11,7 +11,7 @@ TOP_N = 10
 
 with open(ARXIV_DATA, "rt") as f:
     data = json.load(f)
- 
+
 
 def get_authors(papers):
     """Get all authors from metadata"""
@@ -24,15 +24,15 @@ def get_authors(papers):
         if len(paper_authors) > 1:
             for peers in combinations(paper_authors, len(paper_authors)-1):
                 author = list(paper_authors - set(peers))[0]
-                
-                try: 
+
+                try:
                     pairs[author].extend(peers)
                 except KeyError:
                     pairs[author] = list()
                     pairs[author].extend(peers)
 
         authors.extend(paper_authors)
-        
+
     return Counter(authors), pairs
 
 
@@ -42,12 +42,10 @@ if __name__ == "__main__":
     authors, colabs = get_authors(data)
     print(f"{len(authors)} unique authors & {len(colabs)} unique colabs in the dataset.")
 
-    
     print(f"Top {TOP_N} most common authors are:")
     for key, val in authors.most_common(TOP_N):
         print(f"{key}\t:\t{val} papers")
 
-    
     pairs = list()
 
     for (author, peers) in colabs.items():
@@ -59,7 +57,3 @@ if __name__ == "__main__":
     print(f"Top {TOP_N} most common author pairs are:")
     for key, val in pairs.most_common(TOP_N):
         print(f"{key}\t:\t{val//2} colabs")
-
-
-
-
