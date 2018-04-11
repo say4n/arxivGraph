@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 
 from collections import Counter
+from config import *
 from itertools import combinations
 import json
-
-
-ARXIV_DATA = "data/arxivData.json"
-TOP_N = 10
-COLAB_THRESHOLD = 5
 
 
 with open(ARXIV_DATA, "rt") as f:
