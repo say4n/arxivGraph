@@ -7,6 +7,7 @@ import json
 
 ARXIV_DATA = "data/arxivData.json"
 TOP_N = 10
+COLAB_THRESHOLD = 5
 
 
 with open(ARXIV_DATA, "rt") as f:
@@ -42,7 +43,7 @@ if __name__ == "__main__":
     authors, colabs = get_authors(data)
     print(f"{len(authors)} unique authors & {len(colabs)} unique colabs in the dataset.")
 
-    print(f"Top {TOP_N} most common authors are:")
+    print(f"\nTop {TOP_N} most common authors are:")
     for key, val in authors.most_common(TOP_N):
         print(f"{key}\t:\t{val} papers")
 
@@ -54,6 +55,15 @@ if __name__ == "__main__":
 
     pairs = Counter(pairs)
 
-    print(f"Top {TOP_N} most common author pairs are:")
+    print(f"\nTop {TOP_N} most common author pairs are:")
     for key, val in pairs.most_common(TOP_N):
         print(f"{key}\t:\t{val//2} colabs")
+
+    
+    pairs_sieved = dict()
+    for key, val in pairs.items():
+        if val >= COLAB_THRESHOLD:
+            pairs_sieved[key] = val
+
+    print(f"\n{len(pairs_sieved)} pairs have >= {COLAB_THRESHOLD} contribs.")
+
