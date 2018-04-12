@@ -4,6 +4,7 @@ from collections import Counter
 from config import *
 from itertools import combinations
 import json
+import pickle
 
 
 with open(ARXIV_DATA, "rt") as f:
@@ -63,3 +64,17 @@ if __name__ == "__main__":
 
     print(f"\n{len(pairs_sieved)} pairs have >= {COLAB_THRESHOLD} contribs.")
 
+    authors_from_sieved_pairs = dict()
+    for authorX, authorY in pairs_sieved.keys():
+        authors_from_sieved_pairs[authorX] = authors[authorX]
+        authors_from_sieved_pairs[authorY] = authors[authorY]
+
+    # Save the data - pairs_sieved & authors_from_sieved_pairs
+    export = {
+        "authors": authors,
+        "pairs_sieved": pairs_sieved,
+        "authors_from_sieved_pairs": authors_from_sieved_pairs
+    }
+
+    with open(PROCESSED_DATA, "wb") as fp:
+        pickle.dump(export, fp)
