@@ -23,14 +23,15 @@ def index():
     author_list = list(map(str, authors_from_sieved_pairs.keys()))
 
     nodes = list(map(lambda author: {
-                        "name": author
+                        "name": author,
+                        "pubs": exported_data["authors"][author]/exported_data["most_published_author"]
                      },
                      author_list))
 
     edges = list(map(lambda link: {
                          "source"    : str(author_list.index(link[0])),
                          "target"    : str(author_list.index(link[1])),
-                         "value"     : str(pairs_sieved[link])
+                         "value"     : pairs_sieved[link]/exported_data["most_common_pair"]
                      },
                      pairs_sieved.keys()))
 

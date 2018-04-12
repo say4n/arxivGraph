@@ -73,7 +73,9 @@ if __name__ == "__main__":
     export = {
         "authors": authors,
         "pairs_sieved": pairs_sieved,
-        "authors_from_sieved_pairs": authors_from_sieved_pairs
+        "authors_from_sieved_pairs": authors_from_sieved_pairs,
+        "most_published_author": authors.most_common(1)[0][1],
+        "most_common_pair": pairs.most_common(1)[0][1]
     }
 
     with open(PROCESSED_DATA, "wb") as fp:
