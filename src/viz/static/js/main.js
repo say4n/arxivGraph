@@ -19,6 +19,13 @@ var svg = d3.select("#graph").append("svg")
 //Read the data from the graph_data element 
 var graph_data = document.getElementById('graph_data').innerHTML;
 graph = JSON.parse(graph_data);
+graph["links"] = graph["links"].map(function(object) {
+    return {
+        source: Number(object.source),
+        target: Number(object.target),
+        value: Number(object.value)
+    };
+});
 console.log("JSON loaded!");
 
 //Creates the graph data structure out of the json data

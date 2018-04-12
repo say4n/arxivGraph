@@ -30,13 +30,13 @@ def index():
     edges = list(map(lambda link: {
                          "source"    : str(author_list.index(link[0])),
                          "target"    : str(author_list.index(link[1])),
-                         "value"     : pairs_sieved[link]
+                         "value"     : str(pairs_sieved[link])
                      },
                      pairs_sieved.keys()))
 
     nodelist = json.dumps({
         "nodes" : nodes,
-        "edges" : edges
+        "links" : edges
     })
 
     return render_template('index.html', nodelist=nodelist)
