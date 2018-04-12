@@ -5,10 +5,6 @@ var width = 800,
 //Set up the colour scale
 var color = d3.scale.category20();
 
-//Fisheye distortion
-var fisheye = d3.fisheye.circular()
-    .radius(200)
-    .distortion(2);
 
 //Set up the force layout
 var force = d3.layout.force()
@@ -20,21 +16,6 @@ var force = d3.layout.force()
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
     .attr("height", height);
-
-//Fisheye apply
-svg.on("mousemove", function() {
-    fisheye.focus(d3.mouse(this));
-
-    node.each(function(d) { d.fisheye = fisheye(d); })
-        .attr("cx", function(d) { return d.fisheye.x; })
-        .attr("cy", function(d) { return d.fisheye.y; });
-        // .attr("r", function(d) { return d.fisheye.z * 4.5; });
-
-    link.attr("x1", function(d) { return d.source.fisheye.x; })
-        .attr("y1", function(d) { return d.source.fisheye.y; })
-        .attr("x2", function(d) { return d.target.fisheye.x; })
-        .attr("y2", function(d) { return d.target.fisheye.y; });
-});
 
 //Read the data from the graph_data element 
 var graph_data = document.getElementById('graph_data').innerHTML;
