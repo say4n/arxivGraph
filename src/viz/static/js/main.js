@@ -48,16 +48,20 @@ console.log("Links created!");
 //Do the same with the circles for the nodes - no 
 var node = svg.selectAll(".node")
     .data(graph.nodes)
-    .enter().append("circle")
+    .enter().append("g")
     .attr("class", "node")
+    .call(force.drag);
+console.log("Nodes created!");
+
+// Circle for nodes
+node.append("circle")
     .attr("r", function(d) {
         return 8 * d.pubs + 2;
     })
-    .style("fill", function (d) {
-        return color(d.group);
-    })
-    .call(force.drag);
-console.log("Nodes created!");
+    .style("fill", "black")
+    .append("svg:title")
+    .text(function(d) { return d.x; });
+console.log("Circles created!");
 
 //Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements
 force.on("tick", function () {
@@ -74,11 +78,8 @@ force.on("tick", function () {
         return d.target.y;
     });
 
-    node.attr("cx", function (d) {
-        return d.x;
-    })
-        .attr("cy", function (d) {
-        return d.y;
+    node.attr("transform", function(d) { 
+        return 'translate(' + [d.x, d.y] + ')';
     });
 });
 console.log("Force!");
