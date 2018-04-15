@@ -9,7 +9,7 @@ var color = d3.scale.category20();
 //Set up the force layout
 var force = d3.layout.force()
     .charge(-10)
-    .linkDistance(10)
+    .linkDistance(15)
     .size([width, height]);
 
 //Append a SVG to the graph of the html page. Assign this SVG as an object to svg

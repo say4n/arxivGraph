@@ -75,7 +75,8 @@ if __name__ == "__main__":
         "pairs_sieved": pairs_sieved,
         "authors_from_sieved_pairs": authors_from_sieved_pairs,
         "most_published_author": authors.most_common(1)[0][1],
-        "most_common_pair": pairs.most_common(1)[0][1]
+        "most_common_pair": pairs.most_common(1)[0][1],
+        "COLAB_THRESHOLD": COLAB_THRESHOLD
     }
 
     with open(PROCESSED_DATA, "wb") as fp:

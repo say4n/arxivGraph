@@ -40,7 +40,13 @@ def index():
         "links" : edges
     })
 
-    return render_template('index.html', nodelist=nodelist)
+    constants = {
+        "COLAB_THRESHOLD": exported_data["COLAB_THRESHOLD"]
+    }
+
+    return render_template('index.html',
+                           nodelist=nodelist,
+                           constants=constants)
 
 
 if __name__ == "__main__":
