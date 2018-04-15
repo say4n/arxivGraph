@@ -1,5 +1,5 @@
 //Constants for the SVG
-var width = 600,
+var width = 800,
     height = 600;
 
 //Set up the colour scale
@@ -61,7 +61,8 @@ node.append("circle")
     })
     .style("fill", "black")
     .append("svg:title")
-    .text(function(d) { return d.x; });
+    .text(function(d) { return d.name; });
+
 console.log("Circles created!");
 
 //Now we are giving the SVGs co-ordinates - the force layout is generating the co-ordinates which this code is using to update the attributes of the SVG elements

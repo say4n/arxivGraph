@@ -11,3 +11,7 @@
     stroke: #999;
     stroke-opacity: .6;
 }
+
+.highlighted_node {
+    stroke:  red;
+}
