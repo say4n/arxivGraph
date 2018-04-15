@@ -1,5 +1,5 @@
 //Constants for the SVG
-var width = 800,
+var width = 600,
     height = 600;
 
 //Set up the colour scale
@@ -15,7 +15,7 @@ var force = d3.layout.force()
 //Append a SVG to the graph of the html page. Assign this SVG as an object to svg
 var svg = d3.select("#graph").append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 800 600")
+    .attr("viewBox", `0 0 ${width} ${height}`)
     .classed("svg-content-responsive", true);
     
 //Read the data from the graph_data element 
@@ -25,7 +25,7 @@ graph["links"] = graph["links"].map(function(object) {
     return {
         source: Number(object.source),
         target: Number(object.target),
-        value: Number(object.value)
+        value:  Number(object.value)
     };
 });
 console.log("JSON loaded!");
