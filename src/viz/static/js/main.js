@@ -14,9 +14,10 @@ var force = d3.layout.force()
 
 //Append a SVG to the graph of the html page. Assign this SVG as an object to svg
 var svg = d3.select("#graph").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 800 600")
+    .classed("svg-content-responsive", true);
+    
 //Read the data from the graph_data element 
 var graph_data = document.getElementById('graph_data').innerHTML;
 graph = JSON.parse(graph_data);
