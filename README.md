@@ -1,5 +1,5 @@
 # ![arXivGraph](/src/assets/logo.png)
-![arXiv ML/AI/DL researcher connection](/src/assets/graph.v0.png)
+![arXiv ML/AI/DL researcher connection](/src/assets/graph.v1.png)
 
 # what?
 Discover and find connects between AI/ML researchers

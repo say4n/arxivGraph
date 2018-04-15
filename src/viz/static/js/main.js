@@ -59,9 +59,28 @@ node.append("circle")
     .attr("r", function(d) {
         return 8 * d.pubs + 2;
     })
-    .style("fill", "black")
-    .append("svg:title")
-    .text(function(d) { return d.name; });
+    .style("fill", "black");
+    // .append("svg:title")
+    // .text(function(d) { return d.name; });
+
+// Define the div for the tooltip
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+node.on("mouseover", function(d) {
+        div.transition()
+            .duration(200)
+            .style("opacity", .9);
+        div .html(d.name)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+    .on("mouseout", function(d) {
+        div.transition()
+            .duration(500)
+            .style("opacity", 0);
+    });
 
 console.log("Circles created!");
 
