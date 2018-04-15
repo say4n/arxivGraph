@@ -41,14 +41,14 @@
 
     <div class="row">
       <div id="graph" class="twelve columns">
-        
+        <!-- Graph container -->
       </div>
     </div>
   </div>
 
   <!-- JS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="{{ url_for('static', filename='js/d3.v3.min.js') }}"></script>
   <!-- JSON data -->
   <script type="application/json" id="graph_data">
     {{ nodelist|safe }}
